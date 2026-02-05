@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    {{- $avatarImgSrc := .Site.Params.AvatarURL -}}
+    {{- if and (isset .Site.Params "avatarURL") (not (hasPrefix $avatarImgSrc "http")) -}}
+        {{- $avatarImgSrc = (urls.JoinPath $.Site.BaseURL ($.Site.Params.AvatarURL | default "")) -}}
+    {{- end -}}
+    {{- .Scratch.Set "avatarImgSrc" $avatarImgSrc -}}
+
+    {{- partial "head.html" . -}}
+    <body>
+        <script>
+            // Immediately set theme on page load
+            setThemeByUserPref();
+        </script>
+        {{- partial "header.html" . -}}
+        <main id="content">
+        {{- block "main" . }}{{- end }}
+        </main>
+        {{- partial "footer.html" . -}}
+
+        {{- if .Page.Store.Get "hasMermaid" -}}
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+        {{- end -}}
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{--accent-color:#FF4D4D;--font-size:1.1rem}</style><title>我的Micro HomeLab</title><meta name=description content="Project Link:
+https://github.com/willyhutw/microlab-bootstrap https://github.com/willyhutw/microlab 起源 2023年因緣際會，時常跟一位我很尊敬的前輩混在一起 :P 那時候三不五時就會聽他提到pfSense這套軟體防火牆 …"><meta name=keywords content='homelab,pfsense,k8s,helm,argocd,snmp,fluentbit,prometheus,loki,grafana'><meta property="og:url" content="https://www.willyhu.tw/posts/personal-micro-homelab/"><meta property="og:type" content="website"><meta property="og:title" content="我的Micro HomeLab"><meta property="og:description" content="Project Link:
+https://github.com/willyhutw/microlab-bootstrap https://github.com/willyhutw/microlab 起源 2023年因緣際會，時常跟一位我很尊敬的前輩混在一起 :P 那時候三不五時就會聽他提到pfSense這套軟體防火牆 …"><meta property="og:image" content="https://www.willyhu.tw/"><meta property="og:image:secure_url" content="https://www.willyhu.tw/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="我的Micro HomeLab"><meta name=twitter:description content="Project Link:
+https://github.com/willyhutw/microlab-bootstrap https://github.com/willyhutw/microlab 起源 2023年因緣際會，時常跟一位我很尊敬的前輩混在一起 :P 那時候三不五時就會聽他提到pfSense這套軟體防火牆 …"><meta property="twitter:domain" content="https://www.willyhu.tw/posts/personal-micro-homelab/"><meta property="twitter:url" content="https://www.willyhu.tw/posts/personal-micro-homelab/"><meta name=twitter:image content="https://www.willyhu.tw/"><link rel=canonical href=https://www.willyhu.tw/posts/personal-micro-homelab/><link rel=stylesheet type=text/css href=/css/normalize.min.css media=print><link rel=stylesheet type=text/css href=/css/main.min.css><link id=dark-theme rel=stylesheet href=/css/dark.min.css><script src=/js/bundle.min.7136b4abac7b277aba8bc933917f4602d39a5c44f5590be687244bc86ef4f162.js integrity="sha256-cTa0q6x7J3q6i8kzkX9GAtOaXET1WQvmhyRLyG708WI="></script><link rel=icon href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏖️</text></svg>"></head><body><script>setThemeByUserPref()</script><header class=header><nav class=header-nav><div class=nav-title><a class=nav-brand href=https://www.willyhu.tw/>Hello World</a></div><div class=nav-links><div class=nav-link><a href=https://www.willyhu.tw/posts/ aria-label=posts>Posts</a></div><div class=nav-link><a href=https://www.willyhu.tw/tags/ aria-label=tags>Tags</a></div><div class=nav-link><a href=https://github.com/willyhutw aria-label=github><span data-feather=github></span></a></div><div class=nav-link><a href=https://www.linkedin.com/in/yu-lin-hu aria-label=linkedin><span data-feather=linkedin></span></a></div><span class=nav-icons-divider></span><div class="nav-link dark-theme-toggle"><span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+<a aria-hidden=true role=switch><span class=theme-toggle-icon data-feather=moon></span></a></div><div class=nav-link id=hamburger-menu-toggle><span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+<a aria-checked=false aria-labelledby=hamburger-menu-toggle id=hamburger-menu-toggle-target role=switch><span data-feather=menu></span></a></div><ul class="nav-hamburger-list visibility-hidden"><li class=nav-item><a href=https://www.willyhu.tw/posts/>Posts</a></li><li class=nav-item><a href=https://www.willyhu.tw/tags/>Tags</a></li><li class=nav-item><a href=https://github.com/willyhutw><span data-feather=github></span></a></li><li class=nav-item><a href=https://www.linkedin.com/in/yu-lin-hu><span data-feather=linkedin></span></a></li><li class="nav-item dark-theme-toggle"><span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+<a role=switch><span class=theme-toggle-icon data-feather=moon></span></a></li></ul></div></nav></header><main id=content><div class="post container"><div class=post-header-section><h1>我的Micro HomeLab</h1><small role=doc-subtitle></small><p class=post-date>August 27, 2025</p><ul class=post-tags><li class=post-tag><a href=https://www.willyhu.tw/tags/homelab>homelab</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/pfsense>pfsense</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/k8s>k8s</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/helm>helm</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/argocd>argocd</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/snmp>snmp</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/fluentbit>fluentbit</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/prometheus>prometheus</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/loki>loki</a></li><li class=post-tag><a href=https://www.willyhu.tw/tags/grafana>grafana</a></li></ul></div><div class=post-content><p><strong>Project Link</strong>:</p><ul><li><a href=https://github.com/willyhutw/microlab-bootstrap>https://github.com/willyhutw/microlab-bootstrap</a></li><li><a href=https://github.com/willyhutw/microlab>https://github.com/willyhutw/microlab</a></li></ul><h3 id=起源>起源</h3><p>2023年因緣際會，時常跟一位我很尊敬的前輩混在一起 :P 那時候三不五時就會聽他提到<strong>pfSense</strong>這套軟體防火牆和他家「<strong>機房</strong>」的各種大小事，非常酷！我也想玩玩看！其實我一直以來都很想要有個Lab，可長期用來測試或跑些有的沒的，雖然透過IaC再加上一系列的自動化也能輕鬆一鍵在雲端佈署想要的實驗環境，但我就是很怕會忘了刪掉。</p><p>一開始想省錢，只靠一台小PC插滿USB網卡跑VM，其實這樣窮酸的作法絕對可行，前提是那台機器要夠穩。有段時間我每隔一到兩天就會遇到kernel噴網卡相關的錯誤，然後就是全家沒網路可用、電視不能看、掃地機器人叫不動，幾次下來我真的不敢了…</p><p>後來我把pfSense安裝在專門用來當作路由器的特製小PC(<a href=https://www.amazon.com/dp/B07G9NHRGQ>Protectli Vault FW4B</a>)，到目前為止跑了兩年多，pfSense也升了好幾個版本，完全沒出過事。原本的小PC(Intel NUC)變成主要Lab繼續用KVM Libvirt跑K8S。</p><p>人沒事就是會找事做。不曉得為什麼，有段時間我就很想把樹莓派疊在一起跑K8S。然後就買了一台樹莓派5(8G)，有了一台覺得該買第二台，有了兩台又覺得至少要四台，有了四台又覺得其實六台才是最完美的…最後理智勝出，我只有四台。再來就是規劃新的Lab，也需要把原本跑在amd64架構上的容器遷移到arm64架構，聽起來感覺沒什麼，但其實過程中遇到不少坑，之後看有沒有機會再聊這部份！</p><p>我知道目前Lab還有很多地方可以再調整到更好，但我現在真的只有在閒暇之餘或心血來潮時才有動力…偶爾也會有念頭想把它們通通都關掉，覺得好像沒什麼價值多浪費電而已(每月20~25kWh)。那我就趁還沒關掉前分享一下目前Lab的架構，也算是替自己紀錄，希望未來能有動力分享更多。</p><p><img src=/images/protectli_vault_fw4b.jpg alt="FProtectli Vault FW4B"></p><p><img src=/images/pi_cluster.jpg alt="Raspberry Pi Cluster"></p><p><img src=/images/homelab.jpg alt="The homelab in living room."></p><h3 id=對外服務>對外服務</h3><pre class=mermaid>
+  ---
+config:
+  theme: &#39;base&#39;
+  themeVariables:
+    fontSize: 20px
+---
+flowchart TD
+  INTERNET[🌐 Internet] ==&gt; HINET_ROUTER[&#34;📞 HiNet Router (Bridge Mode)&#34;]
+  HINET_ROUTER ==&gt; PF_ROUTER[🧱 pfSense Firewall]
+
+  PF_ROUTER --- LAN[🏠 LAN 192.168.X.0/24]
+  PF_ROUTER == NAT ==&gt; LAB1[🧪 LAB 1 192.168.Y.0/24]
+  PF_ROUTER --- LAB2[🧪 LAB 2 192.168.Z.0/24]
+
+  LAN --- WIFI[🛜 WIFI]
+  LAN --- TV[📺 TV]
+  LAN --- PC[🖥️ PC]
+
+  LAB1 --- PI_CP[🍓 Raspberry Pi&lt;br/&gt; Control Plane]
+  LAB1 ==&gt; PI_NO[🍓 Raspberry Pi&lt;br/&gt; Nodes]
+
+  LAB2 --- PLAYGROUND[🖥️ Mini PC&lt;br/&gt; KVM - Libvirt&lt;/br&gt; Playground]
+
+  subgraph &#34;☸️ K8S&#34;
+    PI_CP
+    PI_NO ==&gt; EIGW[&#34;🚪 External Ingress Gateway&#34;]
+    EIGW ==&gt; Willyhutw[&#34;🔒 Personal Blog&lt;/br&gt;(https://willyhu.tw)&#34;]
+  end
+</pre><p><strong>Hightlights</strong>:</p><ul><li>防火牆對外只開 TCP: 80, 443.</li><li>防火牆 (Public IP) 與 exteral-ingress-gateway (Private IP) NAT.</li><li>PersonalBlog&rsquo;s Gateway 指向(label selector) exteral-ingress-gateway.</li><li>Cert-manager + Let&rsquo;s encrypt certificate + https redirect to PersonalBlog&rsquo;s Gateway.</li><li>Cloudflare DNS託管 + CDN, 避免對外IP暴露.</li></ul><hr><h3 id=內部服務>內部服務</h3><pre class=mermaid>
+  ---
+config:
+  theme: &#39;base&#39;
+  themeVariables:
+    fontSize: 20px
+---
+flowchart TD
+  PF_ROUTER[🧱 pfSense Firewall]
+
+  PC[🖥️ PC - Willy Hu] ==&gt; LAN
+  LAN[🏠 LAN 192.168.X.0/24] ==&gt; PF_ROUTER
+  PF_ROUTER ==&gt; LAB1[🧪 LAB 1 192.168.Y.0/24]
+
+  LAB1 --- PI_CP[🍓 Raspberry Pi&lt;br/&gt; Control Plane]
+  LAB1 ==&gt; PI_NO[🍓 Raspberry Pi&lt;br/&gt; Nodes]
+
+  subgraph &#34;☸️ K8S&#34;
+    PI_CP
+
+    PI_NO ==&gt; IIGW[🚪 Internal Ingress Gateway]
+
+    IIGW ==&gt; Argocd[🔒 ArgoCD&lt;/br&gt;argocd.willyhu.tw]
+    IIGW ==&gt; Grafana[🔒 Grafana&lt;/br&gt;grafana.willyhu.tw]
+    IIGW ==&gt; Prometheus[🔒 Prometheus&lt;/br&gt;prometheus.willyhu.tw]
+    IIGW ==&gt; Loki[🔒 Loki&lt;/br&gt;loki.willyhu.tw]
+    IIGW ==&gt; Kiali[🔒 Kiali&lt;/br&gt;kiali.willyhu.tw]
+  end
+</pre><p><strong>Hightlights</strong>:</p><ul><li>防火牆規則:<ul><li>LAN與所有LABs皆隔離不能互相訪問.</li><li>除了我之外 (DHCP Static Mappings).</li></ul></li><li>InternalServices Gateway 指向(label selector) internal-ingress-gateway.</li><li>Cert-manager + Let&rsquo;s encrypt certificate + https redirect to InternalServices Gateway.</li><li>Proper Gateway/VirtualService allowing host for InternalServices.</li><li>防火牆內部DNS(resolver) host override.<ul><li>argocd.willyhu.tw => internal-ingress-gateway&rsquo;s privete ip (192.168.12.X)</li><li>grafana.willyhu.tw => internal-ingress-gateway&rsquo;s privete ip (192.168.12.X)</li><li>&mldr;</li></ul></li></ul><hr><h3 id=data-etl-pipeline>Data ETL Pipeline</h3><pre class=mermaid>
+  ---
+config:
+  theme: &#39;base&#39;
+  themeVariables:
+    fontSize: 20px
+---
+flowchart
+  PF_ROUTER[🧱 pfSense Firewall]
+
+  PF_ROUTER ==&gt; DataEntry
+
+  SnmpExporter ==&gt; PF_ROUTER
+  Prometheus ==&gt; SnmpExporter
+
+  %% K8S Cluster  
+  subgraph &#34;☸️ K8S&#34;
+    SnmpExporter[SNMP Exporter]
+    Prometheus[Prometheus]
+
+    DataEntry[FLB Input - &lt;/br&gt; UDP Server]
+    DataFilterPfsense[FLB Filter - &lt;/br&gt; pfsense_log_parser]
+
+    DataTail[&#34;FLB Input - &lt;/br&gt; Tail (DaemonSet)&#34;]
+    DataFilterWillyhutw[FLB Filter - &lt;/br&gt; willyhutw_log_parser]
+
+    DataOutputLoki[FLB Output - &lt;/br&gt; Loki]
+
+    Loki[Loki]
+
+    DataEntry ==&gt; DataFilterPfsense
+    DataFilterPfsense ==&gt; DataOutputLoki
+
+    DataTail ==&gt; DataFilterWillyhutw
+    DataFilterWillyhutw ==&gt; DataOutputLoki
+
+    DataOutputLoki ==&gt; Loki
+  end
+</pre><p><strong>Hightlights</strong>:</p><ul><li>防火牆Metric:<ul><li>開啟SNMP服務並且只允許LAB network存取.</li><li>SNMP Exporter fetch metrics from firewall.</li><li>Prometheus scrape from SNMP Exporter.</li><li>參考: <a href=https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/>https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/</a></li></ul></li><li>防火牆Log: FluentBit<ul><li>參考: <a href=https://www.willyhu.tw/posts/pfsense-filterlog-collection/>https://www.willyhu.tw/posts/pfsense-filterlog-collection/</a></li></ul></li><li>PersonalBlog&rsquo;s Log: FluentBit
+<img src=/images/willyhutw-access-log.png alt="willyhutw access dashboard."></li></ul></div><div class=prev-next></div></div></main><footer class=footer><span>Made with &#10084;&#65039; using <a target=_blank href=https://github.com/gokarna-theme/gokarna-hugo>Gokarna</a></span></footer><script type=module>
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({ startOnLoad: true });
+        </script></body></html>

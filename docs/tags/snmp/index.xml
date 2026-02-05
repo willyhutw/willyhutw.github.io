@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Snmp on Hello World</title><link>https://www.willyhu.tw/tags/snmp/</link><description>Recent content in Snmp on Hello World</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 27 Aug 2025 16:17:00 +0800</lastBuildDate><atom:link href="https://www.willyhu.tw/tags/snmp/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Micro HomeLab</title><link>https://www.willyhu.tw/posts/personal-micro-homelab/</link><pubDate>Wed, 27 Aug 2025 16:17:00 +0800</pubDate><guid>https://www.willyhu.tw/posts/personal-micro-homelab/</guid><description>&lt;p&gt;&lt;strong&gt;Project Link&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/willyhutw/microlab-bootstrap"&gt;https://github.com/willyhutw/microlab-bootstrap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/willyhutw/microlab"&gt;https://github.com/willyhutw/microlab&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="起源"&gt;起源&lt;/h3&gt;
+&lt;p&gt;2023年因緣際會，時常跟一位我很尊敬的前輩混在一起 :P 那時候三不五時就會聽他提到&lt;strong&gt;pfSense&lt;/strong&gt;這套軟體防火牆和他家「&lt;strong&gt;機房&lt;/strong&gt;」的各種大小事，非常酷！我也想玩玩看！其實我一直以來都很想要有個Lab，可長期用來測試或跑些有的沒的，雖然透過IaC再加上一系列的自動化也能輕鬆一鍵在雲端佈署想要的實驗環境，但我就是很怕會忘了刪掉。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;一開始想省錢，只靠一台小PC插滿USB網卡跑VM，其實這樣窮酸的作法絕對可行，前提是那台機器要夠穩。有段時間我每隔一到兩天就會遇到kernel噴網卡相關的錯誤，然後就是全家沒網路可用、電視不能看、掃地機器人叫不動，幾次下來我真的不敢了…&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;後來我把pfSense安裝在專門用來當作路由器的特製小PC(&lt;a href="https://www.amazon.com/dp/B07G9NHRGQ"&gt;Protectli Vault FW4B&lt;/a&gt;)，到目前為止跑了兩年多，pfSense也升了好幾個版本，完全沒出過事。原本的小PC(Intel NUC)變成主要Lab繼續用KVM Libvirt跑K8S。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;人沒事就是會找事做。不曉得為什麼，有段時間我就很想把樹莓派疊在一起跑K8S。然後就買了一台樹莓派5(8G)，有了一台覺得該買第二台，有了兩台又覺得至少要四台，有了四台又覺得其實六台才是最完美的…最後理智勝出，我只有四台。再來就是規劃新的Lab，也需要把原本跑在amd64架構上的容器遷移到arm64架構，聽起來感覺沒什麼，但其實過程中遇到不少坑，之後看有沒有機會再聊這部份！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;我知道目前Lab還有很多地方可以再調整到更好，但我現在真的只有在閒暇之餘或心血來潮時才有動力…偶爾也會有念頭想把它們通通都關掉，覺得好像沒什麼價值多浪費電而已(每月20~25kWh)。那我就趁還沒關掉前分享一下目前Lab的架構，也算是替自己紀錄，希望未來能有動力分享更多。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/protectli_vault_fw4b.jpg" alt="FProtectli Vault FW4B"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/pi_cluster.jpg" alt="Raspberry Pi Cluster"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/homelab.jpg" alt="The homelab in living room."&gt;&lt;/p&gt;
+&lt;h3 id="對外服務"&gt;對外服務&lt;/h3&gt;
+&lt;pre class="mermaid"&gt;
+ ---
+config:
+ theme: &amp;#39;base&amp;#39;
+ themeVariables:
+ fontSize: 20px
+---
+flowchart TD
+ INTERNET[🌐 Internet] ==&amp;gt; HINET_ROUTER[&amp;#34;📞 HiNet Router (Bridge Mode)&amp;#34;]
+ HINET_ROUTER ==&amp;gt; PF_ROUTER[🧱 pfSense Firewall]
+
+ PF_ROUTER --- LAN[🏠 LAN 192.168.X.0/24]
+ PF_ROUTER == NAT ==&amp;gt; LAB1[🧪 LAB 1 192.168.Y.0/24]
+ PF_ROUTER --- LAB2[🧪 LAB 2 192.168.Z.0/24]
+
+ LAN --- WIFI[🛜 WIFI]
+ LAN --- TV[📺 TV]
+ LAN --- PC[🖥️ PC]
+
+ LAB1 --- PI_CP[🍓 Raspberry Pi&amp;lt;br/&amp;gt; Control Plane]
+ LAB1 ==&amp;gt; PI_NO[🍓 Raspberry Pi&amp;lt;br/&amp;gt; Nodes]
+
+ LAB2 --- PLAYGROUND[🖥️ Mini PC&amp;lt;br/&amp;gt; KVM - Libvirt&amp;lt;/br&amp;gt; Playground]
+
+ subgraph &amp;#34;☸️ K8S&amp;#34;
+ PI_CP
+ PI_NO ==&amp;gt; EIGW[&amp;#34;🚪 External Ingress Gateway&amp;#34;]
+ EIGW ==&amp;gt; Willyhutw[&amp;#34;🔒 Personal Blog&amp;lt;/br&amp;gt;(https://willyhu.tw)&amp;#34;]
+ end
+&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Hightlights&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>SNMP Exporter for pfSense</title><link>https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/</link><pubDate>Tue, 23 Apr 2024 16:23:07 +0800</pubDate><guid>https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/</guid><description>&lt;div class="goat svg-container "&gt;
+ 
+ &lt;svg
+ xmlns="http://www.w3.org/2000/svg"
+ font-family="Menlo,Lucida Console,monospace"
+ 
+ viewBox="0 0 576 153"
+ &gt;
+ &lt;g transform='translate(8,16)'&gt;
+&lt;path d='M 24,0 L 104,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 200,0 L 328,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 112,16 L 200,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 24,32 L 104,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 200,32 L 328,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 240,96 L 256,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 256,96 L 344,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 480,96 L 560,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 352,112 L 480,112' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 240,128 L 344,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 480,128 L 560,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 24,0 L 24,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 104,0 L 104,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 200,0 L 200,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 200,16 L 200,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 240,96 L 240,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 256,48 L 256,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 328,0 L 328,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 344,96 L 344,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 480,96 L 480,112' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 480,112 L 480,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 560,96 L 560,128' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='120.000000,16.000000 108.000000,10.400000 108.000000,21.600000' fill='currentColor' transform='rotate(180.000000, 112.000000, 16.000000)'&gt;&lt;/polygon&gt;
+&lt;path d='M 256,40 L 256,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;polygon points='272.000000,48.000000 260.000000,42.400002 260.000000,53.599998' fill='currentColor' transform='rotate(270.000000, 256.000000, 48.000000)'&gt;&lt;/polygon&gt;
+&lt;polygon points='360.000000,112.000000 348.000000,106.400002 348.000000,117.599998' fill='currentColor' transform='rotate(180.000000, 352.000000, 112.000000)'&gt;&lt;/polygon&gt;
+&lt;text text-anchor='middle' x='40' y='20' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='48' y='20' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='20' fill='currentColor' style='font-size:1em'&gt;S&lt;/text&gt;
+&lt;text text-anchor='middle' x='64' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='72' y='20' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='80' y='20' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='144' y='4' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='152' y='4' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='4' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='168' y='4' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='216' y='20' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='20' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='232' y='20' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='240' y='20' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='248' y='20' fill='currentColor' style='font-size:1em'&gt;_&lt;/text&gt;
+&lt;text text-anchor='middle' x='256' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='256' y='116' fill='currentColor' style='font-size:1em'&gt;P&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='20' fill='currentColor' style='font-size:1em'&gt;x&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='116' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='272' y='20' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='272' y='68' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='272' y='116' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='280' y='20' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='280' y='68' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='280' y='116' fill='currentColor' style='font-size:1em'&gt;m&lt;/text&gt;
+&lt;text text-anchor='middle' x='288' y='20' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='288' y='68' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='288' y='116' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='296' y='20' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='296' y='68' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='296' y='116' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='304' y='20' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='304' y='68' fill='currentColor' style='font-size:1em'&gt;p&lt;/text&gt;
+&lt;text text-anchor='middle' x='304' y='116' fill='currentColor' style='font-size:1em'&gt;h&lt;/text&gt;
+&lt;text text-anchor='middle' x='312' y='20' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='312' y='68' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='312' y='116' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='320' y='116' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='328' y='116' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='376' y='100' fill='currentColor' style='font-size:1em'&gt;d&lt;/text&gt;
+&lt;text text-anchor='middle' x='384' y='100' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='392' y='100' fill='currentColor' style='font-size:1em'&gt;t&lt;/text&gt;
+&lt;text text-anchor='middle' x='400' y='100' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='408' y='100' fill='currentColor' style='font-size:1em'&gt;s&lt;/text&gt;
+&lt;text text-anchor='middle' x='416' y='100' fill='currentColor' style='font-size:1em'&gt;o&lt;/text&gt;
+&lt;text text-anchor='middle' x='424' y='100' fill='currentColor' style='font-size:1em'&gt;u&lt;/text&gt;
+&lt;text text-anchor='middle' x='432' y='100' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='440' y='100' fill='currentColor' style='font-size:1em'&gt;c&lt;/text&gt;
+&lt;text text-anchor='middle' x='448' y='100' fill='currentColor' style='font-size:1em'&gt;e&lt;/text&gt;
+&lt;text text-anchor='middle' x='496' y='116' fill='currentColor' style='font-size:1em'&gt;G&lt;/text&gt;
+&lt;text text-anchor='middle' x='504' y='116' fill='currentColor' style='font-size:1em'&gt;r&lt;/text&gt;
+&lt;text text-anchor='middle' x='512' y='116' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='520' y='116' fill='currentColor' style='font-size:1em'&gt;f&lt;/text&gt;
+&lt;text text-anchor='middle' x='528' y='116' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;text text-anchor='middle' x='536' y='116' fill='currentColor' style='font-size:1em'&gt;n&lt;/text&gt;
+&lt;text text-anchor='middle' x='544' y='116' fill='currentColor' style='font-size:1em'&gt;a&lt;/text&gt;
+&lt;/g&gt;
+
+ &lt;/svg&gt;
+ 
+&lt;/div&gt;
+&lt;h2 id="introdution"&gt;Introdution&lt;/h2&gt;
+&lt;p&gt;This post will be focused on how to customize the snmp_exporter config for pfSense.&lt;/p&gt;</description></item></channel></rss>

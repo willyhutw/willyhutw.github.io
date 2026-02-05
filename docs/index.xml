@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hello World</title><link>https://willyhu.tw/</link><description>Recent content on Hello World</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 27 Aug 2025 16:17:00 +0800</lastBuildDate><atom:link href="https://willyhu.tw/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Micro HomeLab</title><link>https://willyhu.tw/posts/personal-micro-homelab/</link><pubDate>Wed, 27 Aug 2025 16:17:00 +0800</pubDate><guid>https://willyhu.tw/posts/personal-micro-homelab/</guid><description>&lt;p&gt;&lt;strong&gt;Project Link&lt;/strong&gt;:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hello World</title><link>https://www.willyhu.tw/</link><description>Recent content on Hello World</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 27 Aug 2025 16:17:00 +0800</lastBuildDate><atom:link href="https://www.willyhu.tw/index.xml" rel="self" type="application/rss+xml"/><item><title>我的Micro HomeLab</title><link>https://www.willyhu.tw/posts/personal-micro-homelab/</link><pubDate>Wed, 27 Aug 2025 16:17:00 +0800</pubDate><guid>https://www.willyhu.tw/posts/personal-micro-homelab/</guid><description>&lt;p&gt;&lt;strong&gt;Project Link&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://github.com/willyhutw/microlab-bootstrap"&gt;https://github.com/willyhutw/microlab-bootstrap&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/willyhutw/microlab"&gt;https://github.com/willyhutw/microlab&lt;/a&gt;&lt;/li&gt;
@@ -9,9 +9,9 @@
 &lt;p&gt;後來我把pfSense安裝在專門用來當作路由器的特製小PC(&lt;a href="https://www.amazon.com/dp/B07G9NHRGQ"&gt;Protectli Vault FW4B&lt;/a&gt;)，到目前為止跑了兩年多，pfSense也升了好幾個版本，完全沒出過事。原本的小PC(Intel NUC)變成主要Lab繼續用KVM Libvirt跑K8S。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;人沒事就是會找事做。不曉得為什麼，有段時間我就很想把樹莓派疊在一起跑K8S。然後就買了一台樹莓派5(8G)，有了一台覺得該買第二台，有了兩台又覺得至少要四台，有了四台又覺得其實六台才是最完美的…最後理智勝出，我只有四台。再來就是規劃新的Lab，也需要把原本跑在amd64架構上的容器遷移到arm64架構，聽起來感覺沒什麼，但其實過程中遇到不少坑，之後看有沒有機會再聊這部份！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;我知道目前Lab還有很多地方可以再調整到更好，但我現在真的只有在閒暇之餘或心血來潮時才有動力…偶爾也會有念頭想把它們通通都關掉，覺得好像沒什麼價值多浪費電而已(每月20~25kWh)。那我就趁還沒關掉前分享一下目前Lab的架構，也算是替自己紀錄，希望未來能有動力分享更多。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://willyhu.tw/images/protectli_vault_fw4b.jpg" alt="FProtectli Vault FW4B"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://willyhu.tw/images/pi_cluster.jpg" alt="Raspberry Pi Cluster"&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://willyhu.tw/images/homelab.jpg" alt="The homelab in living room."&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/protectli_vault_fw4b.jpg" alt="FProtectli Vault FW4B"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/pi_cluster.jpg" alt="Raspberry Pi Cluster"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://www.willyhu.tw/images/homelab.jpg" alt="The homelab in living room."&gt;&lt;/p&gt;
 &lt;h3 id="對外服務"&gt;對外服務&lt;/h3&gt;
 &lt;pre class="mermaid"&gt;
  ---
@@ -44,7 +44,7 @@ flowchart TD
  end
 &lt;/pre&gt;
 
-&lt;p&gt;&lt;strong&gt;Hightlights&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>pfSense Filterlog Collection</title><link>https://willyhu.tw/posts/pfsense-filterlog-collection/</link><pubDate>Thu, 25 Apr 2024 22:43:00 +0800</pubDate><guid>https://willyhu.tw/posts/pfsense-filterlog-collection/</guid><description>&lt;div class="goat svg-container "&gt;
+&lt;p&gt;&lt;strong&gt;Hightlights&lt;/strong&gt;:&lt;/p&gt;</description></item><item><title>pfSense Filterlog Collection</title><link>https://www.willyhu.tw/posts/pfsense-filterlog-collection/</link><pubDate>Thu, 25 Apr 2024 22:43:00 +0800</pubDate><guid>https://www.willyhu.tw/posts/pfsense-filterlog-collection/</guid><description>&lt;div class="goat svg-container "&gt;
  
  &lt;svg
  xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +132,7 @@ flowchart TD
  
 &lt;/div&gt;
 &lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This post is about pfSense syslog(especially to filterlog) collection and visualization by using &lt;em&gt;&lt;strong&gt;Fluentd&lt;/strong&gt;&lt;/em&gt;, &lt;em&gt;&lt;strong&gt;Loki&lt;/strong&gt;&lt;/em&gt; and &lt;em&gt;&lt;strong&gt;Grafana&lt;/strong&gt;&lt;/em&gt;. We assume you already have running fluentd, loki and grafana instances. The following instruction won&amp;rsquo;t cover any installation.&lt;/p&gt;</description></item><item><title>SNMP Exporter for pfSense</title><link>https://willyhu.tw/posts/snmp-exporter-for-pfsense/</link><pubDate>Tue, 23 Apr 2024 16:23:07 +0800</pubDate><guid>https://willyhu.tw/posts/snmp-exporter-for-pfsense/</guid><description>&lt;div class="goat svg-container "&gt;
+&lt;p&gt;This post is about pfSense syslog(especially to filterlog) collection and visualization by using &lt;em&gt;&lt;strong&gt;Fluentd&lt;/strong&gt;&lt;/em&gt;, &lt;em&gt;&lt;strong&gt;Loki&lt;/strong&gt;&lt;/em&gt; and &lt;em&gt;&lt;strong&gt;Grafana&lt;/strong&gt;&lt;/em&gt;. We assume you already have running fluentd, loki and grafana instances. The following instruction won&amp;rsquo;t cover any installation.&lt;/p&gt;</description></item><item><title>SNMP Exporter for pfSense</title><link>https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/</link><pubDate>Tue, 23 Apr 2024 16:23:07 +0800</pubDate><guid>https://www.willyhu.tw/posts/snmp-exporter-for-pfsense/</guid><description>&lt;div class="goat svg-container "&gt;
  
  &lt;svg
  xmlns="http://www.w3.org/2000/svg"
